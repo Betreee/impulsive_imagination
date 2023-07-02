@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Registration Failed</h2>
+{% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <li><strong>{{ field.label }}</strong>: {{ error|escape }}</li>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    </ul>
+{% endif %}
+
+
+<p>We're sorry, but we were unable to register your account at this time. Please try again later.</p>
+{% endblock %}

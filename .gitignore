@@ -1,0 +1,6 @@
+store
+myproject/db.sqlite3
+myproject/.coverage
+myproject/staticfiles
+.vscode
+*.pyc
