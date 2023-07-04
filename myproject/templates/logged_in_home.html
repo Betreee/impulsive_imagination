@@ -1,18 +1,19 @@
 {% extends 'home.html' %}
 {% load static %}
+{% block title2 %}
+    Home
+{% endblock %}
 {% block title %}
     Home
 {% endblock %}
-{% block logged %}
+{% block content %}
 <div class="container">
-    <div class="jumbotron">
-      <h1>{{ user }}</h1>
-      <h2> is logged in </h2>
-      <p>Bootstrap is the most popular HTML, CSS...</p> 
-    </div>
+  <div class="jumbotron">
+    <h1 class="display-4">Hello, {{ user }}!</h1>
+    <p class="lead">You are logged in.</p>
+    <hr class="my-4">
     <p>This is some text.</p> 
     <p>This is another text.</p>
   </div>
-  </div>
-  
+</div>
 {% endblock %}

@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # "users",
     'users.apps.UsersConfig',
-    'myproject'
+    'myproject',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -109,6 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = "login"
+LOGOUT_REDIRECT_URL = "login"
+AUTH_PROFILE_MODULE = 'users.UserProfile'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -132,5 +136,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+

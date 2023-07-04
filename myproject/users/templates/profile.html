@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ user.username }}'s Profile</h1>
+  <p>Email: {{ user.email }}</p>
+  <p>Bio: {{ user.userprofile.bio }}</p>
+  {% if user.userprofile.profile_pic %}
+    <img src="{{ user.userprofile.profile_pic.url }}">
+  {% endif %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    {{ context.form.as_p }}
+    <button type="submit">Update</button>
+  </form>
+{% endblock %}

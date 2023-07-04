@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="profile">
+    <h1>{{ user.username }}'s Profile</h1>
+    <p>Email: {{ user.email }}</p>
+    
+    <!-- Add more user details here -->
+
+    <a href="{% url 'logout' %}">Logout</a>
+  </div>
+{% endblock %}

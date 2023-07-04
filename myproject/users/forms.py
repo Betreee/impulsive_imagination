@@ -36,35 +36,58 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError('The two passwords do not match.')
 
     def save(self, commit=True):
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password1'])
-        if commit:
-            user.save()
+        print(super().clean())
+        
+        if super().clean() and commit==False:
+            user = super().save(commit=False)
+            user.set_username(self.cleaned_data['username'])
+            user.set_email(self.cleaned_data['email'])
+
+            user.set_password(self.cleaned_data['password1'])
+            return user
+        if commit and super().clean():
+           user =  super().save()
         return user 
     
-    def password_check(self, password):
-        password1 = self.cleaned_data['password1']
+from django import forms
+from .models import UserProfile
 
-        print(password1)
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [ 
+'bio',
+'profile_pic',
+'first_name',
+'last_name',
+'address',
+'city',
+'state',
+'zipcode',
+'phone',
+'age',
+'birth_date',
 
-
-
-
-        #ensure password is 8 characters or more
-        if len(password1) < 8:
-            return False, 'Password must be 8 characters or more'
-                #ensure password has at least one number
-        elif password1.isdigit():
-            return False     , 'Password must contain at least one number'    
-                #ensure password has at least one special character
-        elif password1.isalnum():
-            return False, 'Password must contain at least one special character'
-                #ensure password has at least one capital letter
-        elif password1.islower():
-            return ( False, 'Password must contain at least one capital letter')
-                #ensure password has at least one lowercase letter
-        elif password1.isupper():
+]
+    def update(self,commit=True):
+        print(super().clean())
         
-            return (False  , 'Password must contain at least one lowercase letter')
-        else:
-            return True, 'Password is valid'
+        if super().clean() and commit==False:
+            user = super().save(commit=False)
+            user.set_username(self.cleaned_data['username'])
+            user.set_email(self.cleaned_data['email'])
+            user.set_address(self.cleaned_data['address'])
+            user.set_city(self.cleaned_data['city'])
+            user.set_state(self.cleaned_data['state'])
+            user.set_zipcode(self.cleaned_data['zipcode'])
+            user.set_phone(self.cleaned_data['phone'])
+            user.set_bio(self.cleaned_data['bio'])
+            user.set_profile_pic(self.cleaned_data['profile_pic'])
+            user.set_age(self.cleaned_data['age'])
+            user.set_birth_date(self.cleaned_data['birth_date'])
+            user.set_password(self.cleaned_data['password1'])
+            return user
+        if commit and super().clean():
+           user =  super().save()
+        return user 
+        pass

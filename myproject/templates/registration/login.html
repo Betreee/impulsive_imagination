@@ -1,0 +1,20 @@
+.{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+ <!-- redirect to profile -->
+    <h1>{{ user.username }}'s logged in </h1>
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'profile' %}">Profile</a>
+    <a href="{% url 'home' %}">home</a>
+{% else %}
+{{ user.is_authenticated }}
+  <h1>Login</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">login</button>
+  </form>
+{% endif %}
+{% endblock %}
